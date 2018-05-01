@@ -1,0 +1,28 @@
+// Definition for arrays:
+// typedef struct arr_##name {
+//   int size;
+//   type *arr;
+// } arr_##name;
+//
+// arr_##name alloc_arr_##name(int len) {
+//   arr_##name a = {len, len > 0 ? malloc(sizeof(type) * len) : NULL};
+//   return a;
+// }
+//
+//
+int adjacentElementsProduct(arr_integer inputArray) {
+    int flag=0;
+    int product;
+    int largestproduct;
+    for (int i=0; i<inputArray.size-1; i++){
+        if (!flag){
+            largestproduct=product=inputArray.arr[i]*inputArray.arr[i+1];
+            flag=1;
+        }
+        else {
+            product = inputArray.arr[i]*inputArray.arr[i+1];
+            if(product>largestproduct) largestproduct = product;
+        }
+    }
+    return largestproduct;
+}

@@ -1,0 +1,30 @@
+bool palindromeRearranging(char * inputString) {
+    char *newString = calloc(strlen(inputString),sizeof(char));
+    int i = 0;
+    int j = 0;
+    int foundFlag = 0;
+    int palFlag = 0;
+
+    for (i=0; i<strlen(inputString); i++){
+        for (j=0; j<strlen(newString); j++){
+            if (inputString[i] == newString[j]){
+                newString[j] = '0';
+                foundFlag = 1;
+                break;
+            }
+            else foundFlag = 0;
+        }
+        if (foundFlag == 0) newString[strlen(newString)]=inputString[i];
+        printf("%s",newString);
+        printf(" %d\n",strlen(newString));
+    }
+    
+    for (i=0; i<strlen(newString); i++){
+        if (newString[i] == '0'){}
+        else palFlag++;
+    }
+    free(newString);
+    
+    if (palFlag < 2) return true;
+    else return false;
+}

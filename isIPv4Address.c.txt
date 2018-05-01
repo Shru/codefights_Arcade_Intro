@@ -1,0 +1,32 @@
+bool isIPv4Address(char * inputString) {
+    //inputString not NULL and has min size of 7
+    //start and end character should be numbers
+    //Total of 4 valid numbers & 3 dots
+    
+    int subnumber = 0;
+    int k = 0;
+    int dotcount = 0;
+    int length = strlen(inputString);
+    
+    if (strlen(inputString) < 7) return false;
+    if ((inputString[0]<48)||(inputString[0]>57)||(inputString[length-1]<48)||(inputString[length-1]>57)) return false;
+    for (int i=length-1; i>-1; i--){
+        if ((inputString[i]<48)||(inputString[i]>57)) return false;
+        while ((inputString[i] != '.')&&(i >= 0)){
+            if ((inputString[i]<48)||(inputString[i]>57)) return false;
+            subnumber = subnumber + (((int)(inputString[i]-'0'))*pow(10,k));
+            i--;
+            k++;
+        }
+        if ((subnumber<0)||(subnumber>255)){
+            return false;   
+        }
+        else {
+            if (inputString[i] == '.') dotcount++;
+            subnumber = 0;
+            k = 0;
+        }
+    }
+    if (dotcount != 3) return false;
+    return true;
+}

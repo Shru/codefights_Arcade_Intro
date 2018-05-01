@@ -1,0 +1,50 @@
+int commonCharacterCount(char * s1, char * s2) {
+    int count = 0;
+    int i = 0;
+    int j = 0;
+    int jinitial = 0;
+    int flag;
+    
+    //if ((strlen(s1)>15)||(strlen(s1)<1)) return -1;
+    //if ((strlen(s2)>15)||(strlen(s2)<1)) return -1;
+    
+    if (strlen(s1) <= strlen(s2)){
+        flag = 0;
+    }
+    else flag = 1;
+    
+    if (flag == 0){
+        while (i < strlen(s1)){
+            if (s1[i] == s2[j]) {
+                //printf("%c",s2[j]);
+                count++;
+                s2[j] = 1;
+                jinitial = j;
+                i++;j++;
+                
+            } 
+            else {
+                if (j < strlen(s2)-1) j++;
+                else j = 0;
+                if (j == jinitial) i++;
+            }
+        }
+    }
+    
+    if (flag == 1){
+        while (i < strlen(s2)){
+            if (s2[i] == s1[j]) {
+                count++;
+                s1[j] = 1;
+                jinitial = j;
+                i++;j++;
+            } 
+            else {
+                if (j == jinitial) i++;
+                if (j < strlen(s1)-1) j++;
+                else j = 0;
+            }
+        }
+    }
+    return count;
+}

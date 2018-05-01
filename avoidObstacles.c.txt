@@ -1,0 +1,40 @@
+// Definition for arrays:
+// typedef struct arr_##name {
+//   int size;
+//   type *arr;
+// } arr_##name;
+//
+// arr_##name alloc_arr_##name(int len) {
+//   arr_##name a = {len, len > 0 ? malloc(sizeof(type) * len) : NULL};
+//   return a;
+// }
+//
+//
+int cmpfunc (const void * a, const void * b) {
+   return ( *(int*)a - *(int*)b );
+}
+
+int avoidObstacles(arr_integer inputArray) {
+   int jump = 0;
+   int jumpstep = 1;
+   int i = 0;
+   int j = 0;
+   qsort(inputArray.arr,inputArray.size,sizeof(int),cmpfunc);
+   while (i < inputArray.size){
+      jump = jump + jumpstep;
+      j = 0;
+      while (j <inputArray.size){
+         if (jump == inputArray.arr[j]){
+            i = 0;
+            jumpstep++;
+            jump = 0;
+            break;
+         }
+         else j++;
+      }
+      if (jump > inputArray.arr[i]){
+         i++;
+      }
+   }
+   return jumpstep;
+}

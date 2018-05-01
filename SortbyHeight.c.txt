@@ -1,0 +1,44 @@
+// Definition for arrays:
+// typedef struct arr_##name {
+//   int size;
+//   type *arr;
+// } arr_##name;
+//
+// arr_##name alloc_arr_##name(int len) {
+//   arr_##name a = {len, len > 0 ? malloc(sizeof(type) * len) : NULL};
+//   return a;
+// }
+//
+int compare(const void *a, const void *b){
+    return (*(int*)a - *(int*)b);
+}
+    
+arr_integer sortByHeight(arr_integer a) {
+    int people[a.size];
+    
+    int i = 0;
+    int j = 0;
+    while (i < a.size){
+        if (a.arr[i] != -1){
+            people[j] = a.arr[i];
+            i++;
+            j++;
+        }
+        else i++;
+    }
+
+    qsort(people,j,sizeof(int),compare);
+
+    i = 0;
+    j = 0;
+
+    while (i < a.size){
+        if (a.arr[i] != -1){
+            a.arr[i] = people[j];
+            i++;
+            j++;
+        }
+        else i++;
+    }
+    return a;
+}

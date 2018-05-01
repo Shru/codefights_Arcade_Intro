@@ -1,0 +1,37 @@
+// Definition for arrays:
+// typedef struct arr_##name {
+//   int size;
+//   type *arr;
+// } arr_##name;
+//
+// arr_##name alloc_arr_##name(int len) {
+//   arr_##name a = {len, len > 0 ? malloc(sizeof(type) * len) : NULL};
+//   return a;
+// }
+//
+//
+int matrixElementsSum(arr_arr_integer matrix) {
+    int i = 0;
+    int j = 0;
+    int sum = 0;
+    //printf("%d",matrix.size);
+    //printf("%d",matrix.arr[0].size);
+    
+    
+    while (j < matrix.arr[0].size){
+        while (i < matrix.size){
+            if (matrix.arr[i].arr[j] > 0){
+                sum = sum + matrix.arr[i].arr[j];
+                printf("%d",matrix.arr[i].arr[j]);
+                i++;
+            }
+            else {
+                break;
+            }
+        }
+        i=0;
+        j++;
+    }
+    return sum;
+    
+}

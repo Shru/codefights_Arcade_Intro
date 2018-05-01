@@ -1,0 +1,22 @@
+// Definition for arrays:
+// typedef struct arr_##name {
+//   int size;
+//   type *arr;
+// } arr_##name;
+//
+// arr_##name alloc_arr_##name(int len) {
+//   arr_##name a = {len, len > 0 ? malloc(sizeof(type) * len) : NULL};
+//   return a;
+// }
+//
+//
+int arrayMaximalAdjacentDifference(arr_integer inputArray) {
+    int i = 0;
+    int maxabsdiff = 0;
+    int difference = 0;
+    for (i=0; i<inputArray.size-1; i++){
+        difference = inputArray.arr[i] > inputArray.arr[i+1]?abs(inputArray.arr[i]-inputArray.arr[i+1]):abs(inputArray.arr[i+1]-inputArray.arr[i]);
+    if (difference > maxabsdiff) maxabsdiff = difference;
+    }
+    return maxabsdiff;
+}

@@ -1,0 +1,78 @@
+// Definition for arrays:
+// typedef struct arr_##name {
+//   int size;
+//   type *arr;
+// } arr_##name;
+//
+// arr_##name alloc_arr_##name(int len) {
+//   arr_##name a = {len, len > 0 ? malloc(sizeof(type) * len) : NULL};
+//   return a;
+// }
+//
+//
+bool almostIncreasingSequence(arr_integer sequence) {
+    int i=0;
+    int j=i+1;
+    int flag = 0;
+    int next = 0;
+    int index;
+    
+    if (sequence.size>100000){
+        return false;
+    }
+    if ((sequence.arr[i] < -100000)||(sequence.arr[i] > 100000)) return false;
+    
+    while(j != sequence.size){
+        if((sequence.arr[j] < -100000)||(sequence.arr[j] > 100000)) return false;
+        
+        if (sequence.arr[i]<sequence.arr[j]){
+            if(next == 0){
+                i++;
+                j++;
+            }
+            else {
+                i=j;
+                j++;
+                next = 0;
+            }
+        }
+        else {
+            //check if flag = 0 else ret false
+            if (flag == 0){
+                if (sequence.arr[j+1] != '\0'){
+                    if(sequence.arr[i]<sequence.arr[j+1]){
+                        //index = j;
+                        j++;
+                        next = 1;
+                    }
+                    else {
+                        if (i!=0){
+                            if(sequence.arr[i-1]<sequence.arr[j]){
+                                //index = i;
+                                i++;
+                                j++;
+                                next = 0;
+                            }
+                            else return false;
+                        }
+                        else {
+                            //index = i;
+                            i++;
+                            j++;
+                            next = 0;
+                        }
+                    }
+                }
+                else {
+                    //index = j;
+                    j++;
+                    next = 1;
+                }
+            }
+            else return false;
+            flag = 1;
+        }
+    }
+    return true;
+}
+

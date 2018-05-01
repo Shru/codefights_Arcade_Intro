@@ -1,0 +1,19 @@
+// Definition for arrays:
+// typedef struct arr_##name {
+//   int size;
+//   type *arr;
+// } arr_##name;
+//
+// arr_##name alloc_arr_##name(int len) {
+//   arr_##name a = {len, len > 0 ? malloc(sizeof(type) * len) : NULL};
+//   return a;
+// }
+//
+//
+int compare(const void *a, const void *b){
+    return (*(int*)a - *(int*)b);
+}
+int makeArrayConsecutive2(arr_integer statues) {
+    qsort(statues.arr,statues.size,sizeof(int),compare);
+    return statues.arr[statues.size-1]-statues.arr[0]-statues.size+1;
+}

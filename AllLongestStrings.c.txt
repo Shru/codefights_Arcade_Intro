@@ -1,0 +1,36 @@
+// Definition for arrays:
+// typedef struct arr_##name {
+//   int size;
+//   type *arr;
+// } arr_##name;
+//
+// arr_##name alloc_arr_##name(int len) {
+//   arr_##name a = {len, len > 0 ? malloc(sizeof(type) * len) : NULL};
+//   return a;
+// }
+//
+//
+arr_string allLongestStrings(arr_string inputArray) {
+    arr_string longest = inputArray;
+    int longestlength = 0;
+    int i = 0;
+    int j = 0;
+    while (i<inputArray.size){
+        if (strlen(inputArray.arr[i])>=longestlength) {
+            longestlength = strlen(inputArray.arr[i]);
+        }
+        i++;
+    }
+
+    i = 0;
+
+   while (i<inputArray.size){
+        if(strlen(inputArray.arr[i]) == longestlength){
+                strcpy(longest.arr[j],inputArray.arr[i]);
+            j++;
+        }
+       i++;
+    }
+    longest.size = j;
+    return longest;
+}
